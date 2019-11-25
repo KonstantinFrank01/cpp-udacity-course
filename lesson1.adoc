@@ -26,5 +26,68 @@ int main() {
 ----
 
 Any line that has a hash line at the start is a preprocessor directive.
-Include means, add the directives of the given library. The brackets say "Look in the current directory first,
-then look in the directory where the standard libraries are kept".
+Include means, add the directives of the given library. The brackets say
+"Look for this file in the directory where all the standard libraries are stored".
+If we change the brackets to double quotes, for this case, the program still compiles.
+We will see later in the course a situation where using the correct enclosure (Brackets or quotes) makes a difference.
+
+== How to use comments
+Use comments judiciously. Comments should be used to say things that you can't do well in code.
+
+== Adding comments
+Comments can be added in two ways
+* As a comment block
+* As a single line
+....
+A comment can be added as a single line by preceding the comment with two slash marks.
+The prompt is enclosed in the symbols: '/*' and '*/'. This is how we signify comment block.
+....
+
+== HelloWorld Programming Quiz
+
+----
+/*write a C++ program that outputs the following statement:
+*** "Hello world, I am ready for C++"
+*/
+
+#include <iostream>
+
+int main() {
+    std::cout << "Hello world, I am ready for C++";
+    return 0;
+}
+----
+
+== Using Namespace
+
+----
+std::cout<<"Hello World";
+----
+
+Writing `std::` can be a pain. So C++ actually offers a shortcut for writing cout.
+Before the start of the main function, put in the command “using namespace std;”
+
+----
+using namespace std;
+int main() {
+
+}
+----
+
+This tells the compiler to assume we are using the standard library, so we don’t have to write std::.
+
+== Namespace Programming Quiz
+
+----
+/*Use the namespace keyword to simplify typing*/
+
+ #include <iostream>
+
+ using namespace std;
+ int main()
+ {
+     cout << "Hey, writing std:: is pain, ";
+     cout << "change the program so I don't have to write it.";
+     return 0;
+ }
+----
