@@ -1,0 +1,30 @@
+= LESSON 1
+== Introduction to C++
+C++ is primarily for applications that are very demanding on performance, energy consumption and speed.
+
+== Why learn C++?
+It is really useful. Very many things are programmed in C++ like cameras, cell phones and self-driving cars.
+Secondly, it is a language with a lot of features. C++ can be very useful a learning tool to learn programming.
+
+== Where is C++ used?
+C++ is quite used anywhere no matter in which industry you work, there will always be a C++-Job for you.
+
+== What makes C++ different?
+C++ works directly on the hardware and very efficiently with the hardware.It also provides really strong
+abstraction mechanisms that are very powerful.
+
+== Program Structure
+Each C++ program consists of two parts, the preprocessor directives and the main function.
+
+----
+#include <iostream>
+
+int main() {
+  std::cout << "Hello world";
+  return 0;
+}
+----
+
+Any line that has a hash line at the start is a preprocessor directive.
+Include means, add the directives of the given library. The brackets say "Look in the current directory first,
+then look in the directory where the standard libraries are kept".
