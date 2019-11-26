@@ -1,4 +1,4 @@
-= LESSON 1
+= LESSON 1 - BASICS
 == Introduction to C++
 C++ is primarily for applications that are very demanding on performance, energy consumption and speed.
 
@@ -91,3 +91,288 @@ This tells the compiler to assume we are using the standard library, so we don�
      return 0;
  }
 ----
+
+== Write to the Console
+Any String literal must be enclosed in double quotes. Numbers do not require double quotes.
+If a variable name is used, the value of the variable is printed. We can have multiple insertions to cout.
+Cout does not add new lines. To add new line, we put in the backslash n enclosed in double quotes `"\n"`
+
+----
+int integer = 4543;
+std::cout<<"The value of integer is"<<integer;
+----
+
+*Output: The value of integer is 4543*
+
+== Print Variable Programming Quiz
+The size a varaible is allocated in memory is dependent upon its type.
+To determine how many bytes each variable type uses, C++ provides the function sizeof(variableType).
+
+`sizeof(variable type) ie: sizeof(int)`
+
+----
+/*GOAL: Practice writing to the console and learn
+ **the variables types available in C++
+ **Print the sizes of each variable to the console.
+ **Print them in the following order:
+ **int, short, long, char, float, double, bool
+ */
+
+ #include <iostream>
+ int main()
+ {
+     using namespace std;
+     cout<<"int size = "<<sizeof(int)<<"\n";
+     cout<<"short size = "<<sizeof(short)<<"\n";
+     cout<<"long size = "<<sizeof(long)<<"\n";
+     cout<<"char size = "<<sizeof(char)<<"\n";
+     cout<<"float size = "<<sizeof(float)<<"\n";
+     cout<<"double size = "<<sizeof(double)<<"\n";
+     cout<<"bool size = "<<sizeof(bool)<<"\n";
+     return 0;
+ }
+----
+
+== Define Constants
+The value of a constant does not change its value for the life of the program.
+`const int weightGoal = 100;`
+
+== Enumerated Constants
+C++ also allows for enumerated constants. This means the programmer can create a new variable type
+and then assign a finite number of values to it. Here is the form of the enum keyword:
+
+----
+enum type_name {
+  value1,
+  value2,
+  value3,
+  .
+  .
+} object_names;
+----
+
+For example:
+
+----
+enum MONTH {
+    Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec
+};
+----
+
+In this example the enum variable MONTH has twelve possible values.
+These 12 values translate into 12 integer values.
+
+----
+Jan = 0
+Feb = 1
+etc.
+----
+
+The program below demonstrates the use of the enum variable.
+
+----
+/*Enum example*/
+
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+    //define MONTHS as having 12 possible values
+    enum MONTHS {Jan, Feb, Mar, Apr,May,Jun,Jul,Aug,Sep,Oct,Nov,Dec};
+
+    //define bestMonth as a variable type MONTHS
+    MONTHS bestMonth;
+
+    //assign bestMonth one of the values of MONTHS
+    bestMonth = Jan;
+
+    //now we can check the value of bestMonths just
+    //like any other variable
+    if(bestMonth == Jan)
+    {
+        cout<<"I'm not so sure January is the best month\n";
+    }
+    return 0;
+}
+----
+
+== Format Output
+To format data we can use escape sequences.
+These do not require any additional libraries.
+The C++ escape sequences are pretty similar to other languages.
+The most common ones are: \n - newline \t - tab
+We can also format the output by using the iomanip library.
+
+----
+#include <iomanip>
+
+std::cout<<"\n\nThe text without any formating\n";
+std::cout<<"Ints"<<"Floats"<<"Doubles"<< "\n";
+std::cout<<"\nThe text with setw(15)\n";
+std::cout<<"Ints"<<std::setw(15)<<"Floats"<<std::setw(15)<<"Doubles"<< "\n";
+std::cout<<"\n\nThe text with tabs\n";
+std::cout<<"Ints\t"<<"Floats\t"<<"Doubles"<< "\n";
+----
+
+*Output will be*
+
+----
+The text without any formating
+IntsFloatsDoubles
+
+The text with setw(15)
+Ints         Floats        Doubles
+
+
+The text with tabs
+Ints    Floats    Doubles
+----
+
+== Formatting Quiz
+The goal is to print the variables in three columns, ints, floats and doubles.
+
+----
+#include <iostream>
+ #include <iomanip>
+
+ int main()
+ {
+     int a = 45;
+     float b = 45.323;
+     double c = 45.5468;
+     int aa = a + 9;
+     float bb = b + 9;
+     double cc = c + 9;
+     int aaa = aa + 9;
+     float bbb = bb + 9;
+     double ccc = cc + 9;
+
+     std::cout<<"print with set width = 10\n";
+     std::cout<<"Ints"<<std::setw(10);
+     std::cout<<"Floats"<<std::setw(10);
+     std::cout<<"Doubles"<<std::setw(10) << "\n";
+
+     std::cout<< a;
+     std::cout<< std::setw(12)<< b;
+     std::cout<< std::setw(10)<< c << "\n";
+
+     std::cout<< aa;
+     std::cout<< std::setw(12)<< bb;
+     std::cout<< std::setw(10)<< cc << "\n";
+
+     std::cout<< aaa;
+     std::cout<< std::setw(12)<< bbb;
+     std::cout<< std::setw(10)<< ccc << "\n\n";
+
+     std::cout<<"print with tabs\n";
+     std::cout<<"Int"<<"\tFloats"<<"\tDoubles\n";
+     std::cout<< aaa<<"\t"<< bbb<<"\t"<< ccc <<"\n";
+
+     return 0;
+ }
+----
+
+*The output for the program:*
+
+----
+print with set width = 10
+Ints    Floats   Doubles
+45      45.323   45.5468
+54      54.323   54.5468
+63      63.323   63.5468
+
+print with tabs
+Ints    Floats    Doubles
+63       63.323    63.5468
+----
+
+== File IO
+As with other programming languages, we can read and write files.
+
+File IO Steps are:
+
+----
+- Include the <fstream> library
+ - Create a stream (input, output, both)
+      - ofstream myfile; (for writing to a file)
+      - ifstream myfile; (for reading a file)
+      - fstream myfile; (for reading and writing a file)
+ - Open the file  myfile.open(“filename”);
+ - Write or read the file
+ - Close the file myfile.close();
+----
+
+----
+#include <iostream>
+#include <fstream>
+#include <string>
+using namespace std;
+
+int main () {
+    string line;
+    //create an output stream to write to the file
+    //append the new lines to the end of the file
+    ofstream myfileI ("input.txt", ios::app);
+    if (myfileI.is_open())
+    {
+        myfileI << "\nI am adding a line.\n";
+        myfileI << "I am adding another line.\n";
+        myfileI.close();
+    }
+    else cout << "Unable to open file for writing";
+
+    //create an input stream to read the file
+    ifstream myfileO ("input.txt");
+    //During the creation of ifstream, the file is opened.
+    //So we do not have explicitly open the file.
+    if (myfileO.is_open())
+    {
+        while ( getline (myfileO,line) )
+        {
+            cout << line << '\n';
+        }
+        myfileO.close();
+    }
+
+    else cout << "Unable to open file for reading";
+
+    return 0;
+}
+----
+
+== Header Files
+As we have seen we can include additional libraries in C++, we can also include our own libraries.
+Traditionally, these files are called header files and they have an .hpp extension.
+Although any extension will work.
+
+* Header files contain information about how to do a task.
+* The main program contains information about what to do.
+
+* main.cpp: all the code on `what` the program does goes in this file.
+* main.hpp: all the code on `how` the program does a task goes in this file.
+
+*Simple Hello, world example*
+
+==== main.cpp
+----
+#include "main.hpp"
+
+int main()
+{
+    cout<<"Hello, I use header files!";
+    return 0;
+}
+----
+
+==== main.hpp
+----
+#include <iostream>
+#include <string>
+
+using namespace std;
+----
+
+Here `#include "main.hpp"` you have to use double qoutes.
+If you use the angle brackets you will get a compile error!
