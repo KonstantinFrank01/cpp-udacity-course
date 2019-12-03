@@ -376,3 +376,18 @@ using namespace std;
 
 Here `#include "main.hpp"` you have to use double qoutes.
 If you use the angle brackets you will get a compile error!
+
+== User Input
+
+std::cin for reading from the console.
+
+== String Input
+So, we now know that std::cin will not retrieve strings that have a space in them.
+It will see the space as the end of the input.
+We will obviously need a method to enter strings.
+C++ has a function called getline.
+The basic form of getline is:
+
+getline: it will retrieve characters from the std::cin source and stores them
+in the variable called variableName. It will retrieve all characters until the
+newline or “\n” is detected.
